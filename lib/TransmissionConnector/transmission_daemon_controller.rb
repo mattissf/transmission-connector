@@ -3,7 +3,7 @@ require 'daemons'
 module TransmissionConnector
   class TransmissionDaemonController
     def initialize(config = "")
-      config_dir = File.join(File.dirname(File.expand_path(__FILE__)), "..", "..", 'spec', 'support', 'config_dir')
+      config_dir = File.expand_path('../../../spec/support/config_dir', __FILE__)
       @config_arg = "--config-dir #{config_dir}"
     end
     
@@ -21,4 +21,4 @@ module TransmissionConnector
       @transmission_daemon.show_status
     end
   end
-end
+end 
