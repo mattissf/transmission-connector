@@ -38,7 +38,7 @@
     "rpc-bind-address": "0.0.0.0", 
     "rpc-enabled": true, 
     "rpc-password": "{10c051490353265a03b1a95370b25594a26bfa74No3ODj6I", 
-    "rpc-port": 56700, 
+    "rpc-port": 50000, 
     "rpc-username": "test", 
     "rpc-whitelist": "127.0.0.1", 
     "rpc-whitelist-enabled": true, 

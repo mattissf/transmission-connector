@@ -22,8 +22,3 @@ module TransmissionConnector
     end
   end
 end
-
-cont = TransmissionConnector::TransmissionDaemonController.new
-cont.start
-sleep 60
-cont.stop
