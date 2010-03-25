@@ -1,1 +1,1 @@
-For more information on TransmissionConnector, see http://TransmissionConnector.rubyforge.org
+For more information on TransmissionConnector, see http://github.com/mattissf/TransmissionConnector
