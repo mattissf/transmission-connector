@@ -8,3 +8,42 @@ end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'TransmissionConnector'
+
+require File.expand_path('../../lib/TransmissionConnector/connection', __FILE__)
+require File.expand_path('../../lib/TransmissionConnector/transmission_daemon_controller', __FILE__)
+
+def start_transmission
+    @host = '127.0.0.1'
+    @port = 13337
+    
+    config_dir = File.expand_path('../support/config_dir', __FILE__)
+    
+    @transmission_daemon = TransmissionConnector::DaemonController.new(
+      :config_dir => config_dir, 
+      :host       => @host,
+      :port       => @port
+    )
+    
+    @transmission_daemon.start_and_wait  
+end
+
+def stop_transmission
+  @transmission_daemon.stop
+end
+
+def get_connection(config = {})
+    config[:username] ||= 'test'
+    config[:password] ||= 'test'
+  
+    config = {:username => config[:username], :password => config[:password], :host => @host, :port => @port}
+
+    TransmissionConnector::Connection.new(config)  
+end
+
+def get_query
+  TransmissionConnector::Query.new(get_connection)
+end
+
+def get_torrent_file
+  File.expand_path '../support/example.torrent', __FILE__
+end
