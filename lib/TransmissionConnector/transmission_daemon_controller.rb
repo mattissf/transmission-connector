@@ -1,9 +1,9 @@
 module TransmissionConnector
   class DaemonController
-    def initialize(parameters)
-      @config_dir = parameters[:config_dir]
-      @host       = parameters[:host]
-      @port       = parameters[:port]
+    def initialize(config)
+      @config_dir = config[:config_dir]
+      @host       = config[:host]
+      @port       = config[:port]
     end
     
     def start
