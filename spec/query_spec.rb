@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
-require File.expand_path('../../lib/TransmissionConnector/query', __FILE__)
-require File.expand_path('../../lib/TransmissionConnector/torrent', __FILE__)
+require File.expand_path('../../lib/transmission-connector/query', __FILE__)
+require File.expand_path('../../lib/transmission-connector/torrent', __FILE__)
 
 describe TransmissionConnector::Query do
   before(:all) do
