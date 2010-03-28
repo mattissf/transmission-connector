@@ -6,7 +6,7 @@ require './lib/transmission-connector'
 
 Hoe.plugin :newgem
 
-$hoe = Hoe.spec 'TransmissionConnector' do
+$hoe = Hoe.spec 'transmission-connector' do
   self.developer 'Mattis Stordalen Flister', 'mattis.stordalen.flister@gmail.com'
   self.post_install_message = 'PostInstall.txt'
   self.rubyforge_name       = self.name
