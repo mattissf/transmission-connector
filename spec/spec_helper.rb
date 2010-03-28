@@ -13,13 +13,12 @@ require File.expand_path('../../lib/TransmissionConnector/connection', __FILE__)
 require File.expand_path('../../lib/TransmissionConnector/transmission_daemon_controller', __FILE__)
 
 def start_transmission
-    @host = '127.0.0.1'
-    @port = 13337
-    
-    config_dir = File.expand_path('../support/config_dir', __FILE__)
+    @config_dir = File.expand_path('../support/config_dir', __FILE__)
+    @host       = '127.0.0.1'
+    @port       = 13337
     
     @transmission_daemon = TransmissionConnector::DaemonController.new(
-      :config_dir => config_dir, 
+      :config_dir => @config_dir, 
       :host       => @host,
       :port       => @port
     )
@@ -29,6 +28,11 @@ end
 
 def stop_transmission
   @transmission_daemon.stop
+  
+  FileUtils.rm_rf File.join @config_dir, 'blocklists'
+  FileUtils.rm_rf File.join @config_dir, 'torrents'
+  FileUtils.rm_rf File.join @config_dir, 'resume'
+  FileUtils.rm_rf File.join @config_dir, 'stats.json'
 end
 
 def get_connection(config = {})
