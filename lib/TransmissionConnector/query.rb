@@ -17,38 +17,35 @@ module TransmissionConnector
       @connection.post(query)
     end
     
-    def get_all_torrents
-      result = @connection.post({
-      'method'    => 'torrent-get', 
-      'arguments' => {
-        'fields'  => [
-          'name', 
-          'torrentFile', 
-          'id', 
-          'rateDownload',
-          'status'
+    def get_list_of_torrents
+      answer = @connection.post({
+        "method" =>"torrent-get", 
+        "arguments" => {
+          "fields" => [
+            "error",
+            "errorString",
+            "eta",
+            "id",
+            "leftUntilDone",
+            "name",
+            "peersGettingFromUs",
+            "peersSendingToUs",
+            "rateDownload",
+            "rateUpload",
+            "sizeWhenDone",
+            "status",
+            "uploadRatio"
           ]
         }
       })
       
-      return {
-        'metaData' => {
-          'idProperty' => 'id',
-          'totalProperty' => 'results',
-          'root' => 'rows',
-          'fields' => [
-            {'name' => 'name'},
-            {'name' => 'torrentFile'},
-            {'name' => 'id'},
-            {'name' => 'rateDownload'},
-            {'name' => 'status'}
-            ]
-          },
-          
-        'success' => result['result'] === 'success',
-        'results' => result['arguments']['torrents'].size,
-        'rows'    => result['arguments']['torrents']
-      }
+      torrents = Array.new
+      
+      answer["arguments"]["torrents"].each do |torrent_info| 
+        torrents << TransmissionConnector::Torrent.new(torrent_info)
+      end
+      
+      return torrents
     end
   end  
 end
