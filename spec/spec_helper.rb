@@ -10,7 +10,7 @@ $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'TransmissionConnector'
 
 require File.expand_path('../../lib/TransmissionConnector/connection', __FILE__)
-require File.expand_path('../../lib/TransmissionConnector/transmission_daemon_controller', __FILE__)
+require File.expand_path('../../lib/TransmissionConnector/daemon_controller', __FILE__)
 
 def start_transmission
     @config_dir = File.expand_path('../support/config_dir', __FILE__)
