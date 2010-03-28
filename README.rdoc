@@ -1,32 +1,41 @@
 = TransmissionConnector
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/mattissf/transmission-connector
 
 == DESCRIPTION:
 
-FIX (describe your package)
+A connector to a running transmission daemon
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* Add torrent file
+* Get list of torrents
+
+== INSTALL
+
+* sudo gem install transmission-connector
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+connection = TransmissionConnector::Connection.new {
+  :username => 'rpc-username', 
+  :password => 'rpc-password', 
+  :host     => '127.0.0.1', 
+  :port     => 56400
+}
+  
+query = TransmissionConnector::Query.new(connection)
+query.get_list_of_torrents
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
-
-== INSTALL:
-
-* FIX (sudo gem install, anything else)
+* Transmission daemon running
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2010 FIXME full name
+Copyright (c) 2010 Mattis Stordalen Flister
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
