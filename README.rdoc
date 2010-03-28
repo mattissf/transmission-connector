@@ -17,15 +17,15 @@ A connector to a running transmission daemon
 
 == SYNOPSIS:
 
-connection = TransmissionConnector::Connection.new {
-  :username => 'rpc-username', 
-  :password => 'rpc-password', 
-  :host     => '127.0.0.1', 
-  :port     => 56400
-}
+  connection = TransmissionConnector::Connection.new {
+    :username => 'rpc-username', 
+    :password => 'rpc-password', 
+    :host     => '127.0.0.1', 
+    :port     => 56400
+  }
   
-query = TransmissionConnector::Query.new(connection)
-query.get_list_of_torrents
+  query = TransmissionConnector::Query.new(connection)
+  query.get_list_of_torrents
 
 == REQUIREMENTS:
 
