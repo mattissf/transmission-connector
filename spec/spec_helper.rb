@@ -28,11 +28,7 @@ end
 
 def stop_transmission
   @transmission_daemon.stop
-  
-  FileUtils.rm_rf File.join @config_dir, 'blocklists'
-  FileUtils.rm_rf File.join @config_dir, 'torrents'
-  FileUtils.rm_rf File.join @config_dir, 'resume'
-  FileUtils.rm_rf File.join @config_dir, 'stats.json'
+  @transmission_daemon.cleanup
 end
 
 def get_connection(config = {})

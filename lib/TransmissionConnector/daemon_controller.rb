@@ -51,6 +51,13 @@ module TransmissionConnector
       Process.waitpid(@pid)
     end
     
+    def cleanup
+      FileUtils.rm_rf File.join @config_dir, 'blocklists'
+      FileUtils.rm_rf File.join @config_dir, 'torrents'
+      FileUtils.rm_rf File.join @config_dir, 'resume'
+      FileUtils.rm_rf File.join @config_dir, 'stats.json'      
+    end
+    
     def show_status
       begin
         Process.kill(0, @pid)
