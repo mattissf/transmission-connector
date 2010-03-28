@@ -1,1 +1,1 @@
-For more information on TransmissionConnector, see http://github.com/mattissf/TransmissionConnector
+For more information on TransmissionConnector, see http://github.com/mattissf/transmission-connector
