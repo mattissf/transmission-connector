@@ -5,7 +5,7 @@ README.rdoc
 Rakefile
 lib/transmission-connector.rb
 lib/transmission-connector/connection.rb
-lib/transmission-connector/daemon_controller.rb
+lib/transmission-connector/daemon-controller.rb
 lib/transmission-connector/query.rb
 lib/transmission-connector/torrent.rb
 spec/connection_spec.rb
