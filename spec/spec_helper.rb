@@ -44,6 +44,10 @@ def get_query
   TransmissionConnector::Query.new(get_connection)
 end
 
-def get_torrent_file
+def get_torrent_path
   File.expand_path '../support/example.torrent', __FILE__
+end
+
+def get_torrent_file
+  File.open(get_torrent_path, 'rb')
 end
