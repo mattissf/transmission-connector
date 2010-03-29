@@ -21,7 +21,7 @@ module TransmissionConnector
         exec "/usr/bin/transmission-daemon --foreground --config-dir #{@config_dir} --port #{@port}"    
       end
       
-      puts "Spawned process with pid #{@pid}"
+      puts "Spawned transmission-daemon with pid #{@pid}"
     end
     
     def start_and_wait

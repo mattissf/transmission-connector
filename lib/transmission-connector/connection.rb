@@ -1,12 +1,10 @@
 require 'json'
+require 'uri'
+require 'httpclient'
 
 module TransmissionConnector
   class Connection
-    require 'uri'
-    require 'httpclient'
-    
     attr_reader :session_id
-    
     
     def initialize(config)
       @session_id_header_key = 'X-Transmission-Session-Id'
