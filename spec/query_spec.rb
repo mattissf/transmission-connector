@@ -3,7 +3,7 @@ require File.expand_path('../../lib/transmission-connector/query', __FILE__)
 require File.expand_path('../../lib/transmission-connector/torrent', __FILE__)
 
 describe TransmissionConnector::Query do
-  before(:all) do
+  before(:each) do
     start_transmission
   end
   
@@ -19,6 +19,18 @@ describe TransmissionConnector::Query do
     answer["result"].should eql("success")
   end
   
+  it "should be able to add torrent as string" do
+    #given
+    query = get_query
+    torrent_file_content = File.open(get_torrent_file, "rb").read
+    
+    #when
+    answer = query.add_torrent_from_string(torrent_file_content)
+    
+    #then
+    answer["result"].should eql("success")
+  end  
+  
   it "should be able to get list of torrents" do
     #given
     query = get_query
@@ -32,7 +44,7 @@ describe TransmissionConnector::Query do
     torrents.first.name.should eql "ubuntu-9.10-desktop-i386.iso"
   end  
   
-  after(:all) do
+  after(:each) do
     stop_transmission
   end
 end

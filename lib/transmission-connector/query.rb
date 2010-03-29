@@ -6,15 +6,19 @@ module TransmissionConnector
       @connection = connection
     end
     
-    def add_torrent(file_path)
+    def add_torrent_from_string(torrent_file_content)
       query = {
         'method' => 'torrent-add',
         "arguments" => {
-          "metainfo" => Base64.encode64(File.open(file_path, "rb").read)
+          "metainfo" => Base64.encode64(torrent_file_content)
         }
       }
       
-      @connection.post(query)
+      @connection.post(query)      
+    end
+    
+    def add_torrent(file_path)
+      add_torrent_from_string(File.open(file_path, "rb").read)
     end
     
     def get_list_of_torrents
