@@ -7,13 +7,21 @@ module TransmissionConnector
     end
     
     def start
-      @pid = fork
-      
-      if(@pid)
-        puts "Spawned process with pid #{@pid}"
-      else
-        exec "/usr/bin/transmission-daemon --foreground --config-dir #{@config_dir} --port #{@port}"
+      @pid = fork do
+        begin
+          STDIN.reopen "/dev/null"
+          STDOUT.reopen "/tmp/child_process.log", "a" 
+          STDOUT.sync = true
+          STDERR.reopen STDOUT
+          STDERR.sync = true        
+        rescue ::Exception
+          puts "Something went wrong: #{$!}"
+        end
+        
+        exec "/usr/bin/transmission-daemon --foreground --config-dir #{@config_dir} --port #{@port}"    
       end
+      
+      puts "Spawned process with pid #{@pid}"
     end
     
     def start_and_wait
